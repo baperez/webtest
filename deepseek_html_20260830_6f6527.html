@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Investigación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f4f7fb;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            padding: 2rem 2.5rem;
+            transition: 0.2s;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0b2b4a;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.3px;
+        }
+        .subtitle {
+            color: #5a6f87;
+            font-size: 0.95rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 12px;
+            margin-bottom: 2rem;
+            margin-top: 4px;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+        label .required {
+            color: #dc2626;
+            margin-left: 2px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            font-size: 0.95rem;
+            border: 1px solid #d1d9e6;
+            border-radius: 14px;
+            background: #ffffff;
+            transition: 0.2s;
+            outline: none;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        .btn-register {
+            width: 100%;
+            padding: 0.9rem;
+            background: #0b2b4a;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.2s, transform 0.05s;
+            letter-spacing: 0.3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-register:hover {
+            background: #1a3f5f;
+        }
+        .btn-register:active {
+            transform: scale(0.97);
+        }
+        .btn-register i {
+            font-style: normal;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        .message-box {
+            margin-top: 1.8rem;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            display: none;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .message-box.success {
+            display: flex;
+            background: #e6f7e6;
+            border: 1px solid #b2dfb2;
+            color: #0a4f0a;
+        }
+        .message-box.error {
+            display: flex;
+            background: #ffe6e6;
+            border: 1px solid #f5baba;
+            color: #8b1e1e;
+        }
+        .message-box .emoji {
+            font-size: 1.4rem;
+            line-height: 1.3;
+        }
+        .message-box .text {
+            flex: 1;
+        }
+        .message-box .text strong {
+            display: block;
+            margin-bottom: 2px;
+        }
+        .footer-note {
+            margin-top: 1.8rem;
+            font-size: 0.8rem;
+            color: #7c8b9e;
+            text-align: center;
+            border-top: 1px solid #e9edf2;
+            padding-top: 1.2rem;
+        }
+        .footer-note span {
+            background: #f1f4f9;
+            padding: 0.2rem 0.6rem;
+            border-radius: 40px;
+            font-family: monospace;
+            font-size: 0.75rem;
+        }
+        @media (max-width: 480px) {
+            .card { padding: 1.5rem; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>📋 Registro de investigación</h1>
+    <div class="subtitle">Completa tus datos para participar</div>
+
+    <form id="registerForm" novalidate>
+        <div class="form-group">
+            <label for="fullname">Nombre completo <span class="required">*</span></label>
+            <input type="text" id="fullname" placeholder="María José Pérez" required />
+        </div>
+
+        <div class="form-group">
+            <label for="cedula">Cédula <span class="required">*</span></label>
+            <input type="text" id="cedula" placeholder="8-1234-5678" required />
+        </div>
+
+        <div class="form-group">
+            <label for="career">Carrera <span class="required">*</span></label>
+            <input type="text" id="career" placeholder="Ingeniería en Sistemas" required />
+        </div>
+
+        <div class="form-group">
+            <label for="topic">Tema de investigación <span class="required">*</span></label>
+            <textarea id="topic" placeholder="Ej. Inteligencia artificial aplicada a la educación" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Correo institucional <span class="required">*</span></label>
+            <input type="email" id="email" placeholder="nombre@universidad.edu" required />
+        </div>
+
+        <button type="submit" class="btn-register">
+            <i>✉️</i> Registrarme
+        </button>
+    </form>
+
+    <!-- Contenedor de mensajes (feedback) -->
+    <div id="feedback" class="message-box">
+        <span class="emoji">✅</span>
+        <div class="text">
+            <strong id="msgTitle">¡Registro exitoso!</strong>
+            <span id="msgDetail">Se envió un correo de confirmación a tu dirección.</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <span>📧 baperez0412@gmail.com</span> &nbsp;·&nbsp; envío simulado (SMTP)
+    </div>
+</div>
+
+<script>
+    (function() {
+        const form = document.getElementById('registerForm');
+        const feedback = document.getElementById('feedback');
+        const msgTitle = document.getElementById('msgTitle');
+        const msgDetail = document.getElementById('msgDetail');
+
+        // Función para mostrar mensaje (success o error)
+        function showMessage(isSuccess, title, detail) {
+            feedback.className = 'message-box';  // reset
+            if (isSuccess) {
+                feedback.classList.add('success');
+                feedback.querySelector('.emoji').textContent = '✅';
+            } else {
+                feedback.classList.add('error');
+                feedback.querySelector('.emoji').textContent = '⚠️';
+            }
+            msgTitle.textContent = title;
+            msgDetail.textContent = detail;
+            feedback.style.display = 'flex';
+        }
+
+        // Función que simula el envío de correo desde baperez0412@gmail.com
+        // En un entorno real aquí se llamaría a un backend o a un servicio de email.
+        function enviarCorreo(datos) {
+            // Simulamos el envío con una promesa que siempre resuelve (éxito).
+            // Para probar un fallo, se podría usar reject() aleatoriamente, pero
+            // lo dejamos siempre exitoso para demostrar el flujo.
+            return new Promise((resolve, reject) => {
+                console.log('📨 Enviando correo desde baperez0412@gmail.com...');
+                console.log('Destinatario:', datos.email);
+                console.log('Asunto: Registro en investigación');
+                console.log('Mensaje:');
+                console.log(`Hola ${datos.fullname},\n\nGracias por registrarte.\nTema: ${datos.topic}\nCarrera: ${datos.career}\nCédula: ${datos.cedula}\n\nSaludos cordiales.`);
+
+                // Simulamos un pequeño retraso de red (300ms) y éxito.
+                setTimeout(() => {
+                    // 95% de éxito, 5% de error para demostrar manejo (opcional)
+                    // pero por claridad dejamos 100% éxito.
+                    resolve({ ok: true, message: 'Correo enviado correctamente a ' + datos.email });
+                }, 300);
+            });
+        }
+
+        // Manejo del submit
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();  // Evita recarga de la página
+
+            // 1. Obtener y validar campos
+            const fullname = document.getElementById('fullname').value.trim();
+            const cedula = document.getElementById('cedula').value.trim();
+            const career = document.getElementById('career').value.trim();
+            const topic = document.getElementById('topic').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            // Validación básica (todos los campos requeridos)
+            if (!fullname || !cedula || !career || !topic || !email) {
+                showMessage(false, 'Campos incompletos', 'Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+
+            // Validación extra de email (formato)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showMessage(false, 'Correo inválido', 'Ingresa un correo institucional válido (ej. usuario@dominio.edu)');
+                return;
+            }
+
+            // 2. Preparar datos
+            const datosUsuario = {
+                fullname,
+                cedula,
+                career,
+                topic,
+                email
+            };
+
+            // 3. Mostrar estado de "enviando" (podríamos deshabilitar el botón)
+            const btn = form.querySelector('.btn-register');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳ Enviando...';
+            btn.disabled = true;
+
+            // 4. Llamar a la función que "envía" el correo
+            enviarCorreo(datosUsuario)
+                .then(respuesta => {
+                    // Éxito: mostrar mensaje positivo
+                    showMessage(
+                        true,
+                        '¡Registro completado!',
+                        `Se envió un correo de confirmación a ${datosUsuario.email} desde baperez0412@gmail.com.`
+                    );
+                    // Opcional: limpiar el formulario
+                    // form.reset();
+                    console.log('✅ Respuesta del envío:', respuesta);
+                })
+                .catch(error => {
+                    // Error (no esperado en esta demo, pero por si acaso)
+                    showMessage(false, 'Error al enviar', 'Hubo un problema al enviar el correo. Intenta de nuevo más tarde.');
+                    console.error('❌ Error en envío:', error);
+                })
+                .finally(() => {
+                    // Restaurar botón
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
+        });
+    })();
+</script>
+
+</body>
+</html>
